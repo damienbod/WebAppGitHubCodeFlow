@@ -25,6 +25,7 @@ namespace WebAppGitHubCodeFlowDemo.Security
             var client = new OAuth2Client(new Uri(OAuth2AuthorizeEndpoint));
             return client.CreateCodeFlowUrl(ClientId, Scopes, RedirectUrl, State);           
         }
+
         public async Task<TokenData> GetToken(string code)
         {
             var client = new HttpClient();

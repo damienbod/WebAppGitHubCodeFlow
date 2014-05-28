@@ -44,7 +44,7 @@ namespace WebAppGitHubCodeFlowDemo.Controllers
             var client = new HttpClient();
             client.SetBearerToken(token);
 
-            client.BaseAddress = new Uri("http://localhost:60703/api/ResourceServerWebApi/" + id);
+            client.BaseAddress = new Uri("http://localhost:50182/api/ResourceServerWebApi/" + id);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 

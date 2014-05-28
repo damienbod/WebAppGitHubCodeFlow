@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppGitHubCodeFlowDemo", "WebAppGitHubCodeFlowDemo\WebAppGitHubCodeFlowDemo.csproj", "{1679B0AE-41C0-417D-AAD8-0D1DE84DC270}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppResourceServer", "WebAppResourceServer\WebAppResourceServer.csproj", "{EF98B126-B7C5-4031-A8F9-A1F555AB43F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +17,10 @@ Global
 		{1679B0AE-41C0-417D-AAD8-0D1DE84DC270}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1679B0AE-41C0-417D-AAD8-0D1DE84DC270}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1679B0AE-41C0-417D-AAD8-0D1DE84DC270}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF98B126-B7C5-4031-A8F9-A1F555AB43F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF98B126-B7C5-4031-A8F9-A1F555AB43F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF98B126-B7C5-4031-A8F9-A1F555AB43F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF98B126-B7C5-4031-A8F9-A1F555AB43F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
