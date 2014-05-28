@@ -1,0 +1,18 @@
+﻿<div class="row">
+    <br />
+    <p>
+        <button id="codeFlowButton">OAuth2 Code Flow</button>
+    </p>
+</div>
+
+@section scripts {
+    <script>
+        $(function () {
+            var authorizationUrl = '@ViewBag.AuthorizeUrl';
+            $("#codeFlowButton").click(function () {
+                window.location = authorizationUrl;
+            });
+        });
+
+    </script>
+}
