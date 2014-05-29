@@ -10,14 +10,14 @@ using Newtonsoft.Json.Linq;
 
 namespace WebAppResourceServer.OwinMiddleware
 {
-    public class GitHubAuthenticationHandler : AuthenticationHandler<GitHubAuthenticationOptions>
+    public class AuthenticationHandlerForGitHubTokenValidation : AuthenticationHandler<GitHubAuthenticationOptions>
     {
         private const string XmlSchemaString = "http://www.w3.org/2001/XMLSchema#string";
 
         private readonly ILogger _logger;
         private readonly HttpClient _httpClient;
 
-        public GitHubAuthenticationHandler(HttpClient httpClient, ILogger logger)
+        public AuthenticationHandlerForGitHubTokenValidation(HttpClient httpClient, ILogger logger)
         {
             _httpClient = httpClient;
             _logger = logger;
@@ -36,9 +36,9 @@ namespace WebAppResourceServer.OwinMiddleware
                 }
 
                 // Get the GitHub user
-                var userRequest = new HttpRequestMessage(HttpMethod.Get, "https://api.github.com/user?access_token=" + Uri.EscapeDataString(token));
-                userRequest.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage userResponse = await _httpClient.SendAsync(userRequest, Request.CallCancelled);
+                var userDataRequestUsingAccessToken = new HttpRequestMessage(HttpMethod.Get, "https://api.github.com/user?access_token=" + Uri.EscapeDataString(token));
+                userDataRequestUsingAccessToken.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage userResponse = await _httpClient.SendAsync(userDataRequestUsingAccessToken, Request.CallCancelled);
                 userResponse.EnsureSuccessStatusCode();
                 var text = await userResponse.Content.ReadAsStringAsync();
                 JObject user = JObject.Parse(text);

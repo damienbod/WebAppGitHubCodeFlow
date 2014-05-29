@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 
 namespace WebAppResourceServer.OwinMiddleware
 {
-    public class GitHubAuthenticationProvider
+    public class AuthenticationProviderForGitHubOAuth2
     {
-        public GitHubAuthenticationProvider()
+        public AuthenticationProviderForGitHubOAuth2()
         {
             OnAuthenticated = context => Task.FromResult<object>(null);
             OnReturnEndpoint = context => Task.FromResult<object>(null);

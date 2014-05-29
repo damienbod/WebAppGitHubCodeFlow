@@ -13,14 +13,14 @@ namespace WebAppResourceServer.Controllers
         [Route("{id}")]
         public string Get(int id)
         {
-            var sb = new StringBuilder();
+            //var sb = new StringBuilder();
             var identity = (ClaimsIdentity)User.Identity;
-            IEnumerable<Claim> claims = identity.Claims;
-            foreach (var claim in claims)
-            {
-                sb.AppendLine(claim.Type + ":" + claim.Value);
-            }
-            return sb.ToString();
+            //IEnumerable<Claim> claims = identity.Claims;
+            //foreach (var claim in claims)
+            //{
+            //    sb.AppendLine(claim.Type + ":" + claim.Value);
+            //}
+            return "User:" + identity.Name + " has successfully recieved secure data. This is not secure without using HTTPS!";
         }
 
     }

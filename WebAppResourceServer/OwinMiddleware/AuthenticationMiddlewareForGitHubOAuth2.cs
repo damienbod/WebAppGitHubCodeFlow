@@ -5,19 +5,19 @@ using Owin;
 
 namespace WebAppResourceServer.OwinMiddleware
 {
-    public class GitHubAuthenticationMiddleware : AuthenticationMiddleware<GitHubAuthenticationOptions>
+    public class AuthenticationMiddlewareForGitHubOAuth2 : AuthenticationMiddleware<GitHubAuthenticationOptions>
     {
         private readonly HttpClient _httpClient;
         private readonly ILogger _logger;
 
-        public GitHubAuthenticationMiddleware(Microsoft.Owin.OwinMiddleware next, IAppBuilder app, GitHubAuthenticationOptions options) : base(next, options)
+        public AuthenticationMiddlewareForGitHubOAuth2(Microsoft.Owin.OwinMiddleware next, IAppBuilder app, GitHubAuthenticationOptions options) : base(next, options)
         {
             if (Options.Provider == null)
             {
-                Options.Provider = new GitHubAuthenticationProvider();
+                Options.Provider = new AuthenticationProviderForGitHubOAuth2();
             }
 
-            _logger = app.CreateLogger<GitHubAuthenticationMiddleware>();
+            _logger = app.CreateLogger<AuthenticationMiddlewareForGitHubOAuth2>();
 
             _httpClient = new HttpClient(new WebRequestHandler());
             _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Owin GitHub middleware to validate token");
@@ -26,7 +26,7 @@ namespace WebAppResourceServer.OwinMiddleware
 
         protected override AuthenticationHandler<GitHubAuthenticationOptions> CreateHandler()
         {
-            return  new GitHubAuthenticationHandler(_httpClient, _logger);
+            return  new AuthenticationHandlerForGitHubTokenValidation(_httpClient, _logger);
         }
     }
 }

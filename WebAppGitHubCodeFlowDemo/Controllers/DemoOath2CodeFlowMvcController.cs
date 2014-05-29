@@ -10,7 +10,7 @@ namespace WebAppGitHubCodeFlowDemo.Controllers
 {
     public class DemoOath2CodeFlowMvcController : Controller
     {
-        private GitHubCodeFlowSecurity _gitHubCodeFlowSecurity;
+        private readonly GitHubCodeFlowSecurity _gitHubCodeFlowSecurity;
         public DemoOath2CodeFlowMvcController()
         {
             _gitHubCodeFlowSecurity = new GitHubCodeFlowSecurity();
@@ -52,6 +52,10 @@ namespace WebAppGitHubCodeFlowDemo.Controllers
             if (response.IsSuccessStatusCode)
             {
                 secureData = await response.Content.ReadAsAsync<string>();
+            }
+            else
+            {
+                return response.ReasonPhrase;
             }
             return secureData;
         }

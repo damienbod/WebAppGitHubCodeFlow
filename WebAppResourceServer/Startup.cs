@@ -11,7 +11,7 @@ namespace WebAppResourceServer
     {
         public void Configuration(IAppBuilder app)
         {
-            app.Use(typeof(GitHubAuthenticationMiddleware), app, new GitHubAuthenticationOptions());
+            app.Use(typeof(AuthenticationMiddlewareForGitHubOAuth2), app, new GitHubAuthenticationOptions());
             app.UseWebApi(WebApiConfig.Register());
         }
     }
