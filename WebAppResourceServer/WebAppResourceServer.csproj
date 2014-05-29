@@ -182,12 +182,12 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ResourceServerWebApiController.cs" />
-    <Compile Include="GitHubMiddleware\GitHubAuthenticatedContext.cs" />
-    <Compile Include="GitHubMiddleware\GitHubAuthenticationHandler.cs" />
-    <Compile Include="GitHubMiddleware\GitHubAuthenticationMiddleware.cs" />
-    <Compile Include="GitHubMiddleware\GitHubAuthenticationOptions.cs" />
-    <Compile Include="GitHubMiddleware\GitHubAuthenticationProvider.cs" />
-    <Compile Include="GitHubMiddleware\GitHubReturnEndpointContext.cs" />
+    <Compile Include="OwinMiddleware\GitHubAuthenticatedContext.cs" />
+    <Compile Include="OwinMiddleware\GitHubAuthenticationHandler.cs" />
+    <Compile Include="OwinMiddleware\GitHubAuthenticationMiddleware.cs" />
+    <Compile Include="OwinMiddleware\GitHubAuthenticationOptions.cs" />
+    <Compile Include="OwinMiddleware\GitHubAuthenticationProvider.cs" />
+    <Compile Include="OwinMiddleware\GitHubReturnEndpointContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

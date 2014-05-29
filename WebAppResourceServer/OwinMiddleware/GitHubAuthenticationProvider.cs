@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace WebAppGitHubCodeFlowDemo
+namespace WebAppResourceServer.OwinMiddleware
 {
     public class GitHubAuthenticationProvider
     {

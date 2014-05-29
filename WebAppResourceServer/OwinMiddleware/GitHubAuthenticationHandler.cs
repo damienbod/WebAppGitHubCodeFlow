@@ -8,25 +8,23 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Infrastructure;
 using Newtonsoft.Json.Linq;
 
-namespace WebAppGitHubCodeFlowDemo
+namespace WebAppResourceServer.OwinMiddleware
 {
     public class GitHubAuthenticationHandler : AuthenticationHandler<GitHubAuthenticationOptions>
     {
         private const string XmlSchemaString = "http://www.w3.org/2001/XMLSchema#string";
 
-        private readonly ILogger logger;
-        private readonly HttpClient httpClient;
+        private readonly ILogger _logger;
+        private readonly HttpClient _httpClient;
 
         public GitHubAuthenticationHandler(HttpClient httpClient, ILogger logger)
         {
-            this.httpClient = httpClient;
-            this.logger = logger;
+            _httpClient = httpClient;
+            _logger = logger;
         }
 
         protected override async Task<AuthenticationTicket> AuthenticateCoreAsync()
         {
-            AuthenticationProperties properties = null;
-
             try
             {
                 // Get the token from the header
@@ -38,18 +36,20 @@ namespace WebAppGitHubCodeFlowDemo
                 }
 
                 // Get the GitHub user
-                HttpRequestMessage userRequest = new HttpRequestMessage(HttpMethod.Get, "https://api.github.com/user?access_token=" + Uri.EscapeDataString(token));
+                var userRequest = new HttpRequestMessage(HttpMethod.Get, "https://api.github.com/user?access_token=" + Uri.EscapeDataString(token));
                 userRequest.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage userResponse = await httpClient.SendAsync(userRequest, Request.CallCancelled);
+                HttpResponseMessage userResponse = await _httpClient.SendAsync(userRequest, Request.CallCancelled);
                 userResponse.EnsureSuccessStatusCode();
                 var text = await userResponse.Content.ReadAsStringAsync();
                 JObject user = JObject.Parse(text);
 
-                var context = new GitHubAuthenticatedContext(Context, user, token);
-                context.Identity = new ClaimsIdentity(
-                    Options.AuthenticationType,
-                    ClaimsIdentity.DefaultNameClaimType,
-                    ClaimsIdentity.DefaultRoleClaimType);
+                var context = new GitHubAuthenticatedContext(Context, user, token)
+                {
+                    Identity = new ClaimsIdentity(
+                        Options.AuthenticationType,
+                        ClaimsIdentity.DefaultNameClaimType,
+                        ClaimsIdentity.DefaultRoleClaimType)
+                };
 
                 if (!string.IsNullOrEmpty(context.Id))
                 {
@@ -67,7 +67,6 @@ namespace WebAppGitHubCodeFlowDemo
                 {
                     context.Identity.AddClaim(new Claim("urn:github:url", context.Link, XmlSchemaString, Options.AuthenticationType));
                 }
-                context.Properties = properties;
 
                 await Options.Provider.Authenticated(context);
 
@@ -75,9 +74,9 @@ namespace WebAppGitHubCodeFlowDemo
             }
             catch (Exception ex)
             {
-                logger.WriteError(ex.Message);
+                _logger.WriteError(ex.Message);
             }
-            return new AuthenticationTicket(null, properties);
+            return new AuthenticationTicket(null, null);
         }
 
     }

@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace WebAppGitHubCodeFlowDemo
+namespace WebAppResourceServer
 {
     public static class WebApiConfig
     {

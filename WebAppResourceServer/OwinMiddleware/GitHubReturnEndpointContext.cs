@@ -2,7 +2,7 @@
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Provider;
 
-namespace WebAppGitHubCodeFlowDemo
+namespace WebAppResourceServer.OwinMiddleware
 {
     public class GitHubReturnEndpointContext : ReturnEndpointContext
     {

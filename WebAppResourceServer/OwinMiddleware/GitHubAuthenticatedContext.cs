@@ -4,7 +4,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Provider;
 using Newtonsoft.Json.Linq;
 
-namespace WebAppGitHubCodeFlowDemo
+namespace WebAppResourceServer.OwinMiddleware
 {
     public class GitHubAuthenticatedContext : BaseContext
     {
