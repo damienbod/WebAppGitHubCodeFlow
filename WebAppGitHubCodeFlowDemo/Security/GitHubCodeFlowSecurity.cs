@@ -4,8 +4,6 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
-using System.Web.Mvc;
-using Newtonsoft.Json;
 using Thinktecture.IdentityModel.Client;
 
 namespace WebAppGitHubCodeFlowDemo.Security
@@ -15,9 +13,10 @@ namespace WebAppGitHubCodeFlowDemo.Security
         private const string OAuth2AuthorizeEndpoint = "https://github.com/login/oauth/authorize";
         private const string OAuth2TokenEndpoint = "https://github.com/login/oauth/access_token";
         private const string ClientId = "192b91f57fde31898794";
-        private const string ClientSecret = "03359f5248df067a6dbc504a3f33c7f8bab10df2";
+        private const string ClientSecret = "d1cae5b35559501b391341e111d1cfefec9089d2";
         private const string RedirectUrl = "http://localhost:60703/DemoOath2CodeFlowMvc/callback";
         private const string Scopes = "user";
+        // should be a new random string every time the method is called.
         private string State = "29385860478549569433784333";
 
         public string CreateCodeFlowUrl()
